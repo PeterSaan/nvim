@@ -16,7 +16,7 @@ sudo apt install git-all
 
 - luarocks
 ```bash
-sudo apt install lua-{latest version}
+sudo apt install lua{latest version}
 sudo apt install luarocks
 ```
 
