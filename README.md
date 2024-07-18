@@ -1,6 +1,6 @@
 # Neovim config files
 
-These are my config files for setting up Neovim on Linux
+My config files for setting up Neovim on Linux
 
 ## Requirements
 
@@ -20,4 +20,11 @@ sudo apt install lua{latest version}
 sudo apt install luarocks
 ```
 
-- Run `:checkhealth lazy` after installation to ensure everything is fine
+## After installation and cloning
+
+- In `~/.config` folder, run:
+  ```bash
+  mv neovim-config/ neovim/
+  ```
+  
+- Open a random file with `nvim` to install all the plugins via UI. Then run `:checkhealth lazy` in the command line to ensure everything is fine
