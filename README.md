@@ -22,16 +22,17 @@ sudo apt install luarocks
 
 ## After installation and cloning
 
-- Open `init.lua` file with `nvim` to install all the plugins via UI. Then run `:checkhealth lazy` in the command line to ensure everything is fine
+- Open `init.lua` file with `nvim` to install all the plugins via UI (if it doesn't open automatically, run `:Lazy`)
+- Run `:checkhealth lazy` in the command line to ensure everything is fine
 
 ## Match Windows Terminal with neovim theme
 
-Paste the json into the terminal's settings.json file (SHIFT + LMB):
+Open terminal's `settings.json` file (open arrow menu, then SHIFT + LMB on Settings). Then paste the following json into the schemes array:
 ```json
 {
         "name": "Tokyo Night",
         "foreground": "#a9b1dc",
-        "background": "#1a1b2c",
+        "background": "#1a1b26",
         "cursorColor": "#c0caf5",
         "selectionBackground": "#28344a",
         "black": "#414868",
