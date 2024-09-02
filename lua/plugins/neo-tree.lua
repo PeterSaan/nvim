@@ -11,7 +11,6 @@ return {
 		vim.keymap.set("n", "<C-n>", ":Neotree filsesystem toggle left<CR>", {})
 
 		require("neo-tree").setup({
-			close_if_last_window = true,
 			enable_git_status = true,
 			window = {
 				width = 30,

@@ -1,2 +1,4 @@
+vim.opt.number = true
+vim.opt.relativenumber = true
 require("config.lazy")
-require("lazy").setup({ { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" } })
+
