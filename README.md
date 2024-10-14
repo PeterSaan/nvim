@@ -4,6 +4,8 @@ My config files for setting up Neovim on Linux
 
 ## Requirements
 
+- Directory named `.config` in system root dir
+
 - Neovim >= 0.8 (with LuaJIT)
 ```bash
 sudo snap install nvim --classic
@@ -19,6 +21,8 @@ sudo apt install git-all
 sudo apt install lua{latest version}
 sudo apt install luarocks
 ```
+
+- Make sure a nerdy font has been installed for icons
 
 ## After installation and cloning
 
