@@ -10,9 +10,6 @@ return {
 	config = function()
 		require("neo-tree").setup({
 			enable_git_status = true,
-			window = {
-				width = 30,
-			},
 		})
 		vim.keymap.set("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
 	end
