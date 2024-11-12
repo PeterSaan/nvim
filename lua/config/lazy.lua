@@ -14,11 +14,21 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapLeader` and `mapLocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
+-- This is also a good place to setup other settings (vim.opt etc.)
+
+local map = vim.keymap.set
+
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+map("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<C-s>", vim.cmd.w)
+map("i", "<C-h>", "<Left>", {})
+map("i", "<C-l>", "<Right>", {})
+map("i", "<C-j>", "<Down>", {})
+map("i", "<C-k>", "<Up>", {})
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -27,8 +37,6 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	-- Configure any other settings here. See the docs for more details.
-	-- Colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "habamax" } },
 	-- Automatically check for plugin updates
 	checker = { enabled = true },
 })
