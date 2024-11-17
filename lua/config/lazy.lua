@@ -2,7 +2,7 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if cim.v.shell_error ~= 0 then
+	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
 			{ out, "WarningMsg" },
@@ -23,8 +23,8 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-map("n", "<leader>pv", vim.cmd.Ex)
 map("n", "<C-s>", vim.cmd.w)
+map("n", "<C-w>", vim.cmd.wq)
 map("i", "<C-h>", "<Left>", {})
 map("i", "<C-l>", "<Right>", {})
 map("i", "<C-j>", "<Down>", {})
