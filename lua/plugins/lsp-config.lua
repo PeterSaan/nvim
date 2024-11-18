@@ -9,9 +9,12 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
-		opts = {
-			auto_install = true,
-		},
+		config = function ()
+			require("mason-lspconfig").setup {
+				automatic_installation = true,
+				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "stimulus_ls", "tailwindcss" },
+			}
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
