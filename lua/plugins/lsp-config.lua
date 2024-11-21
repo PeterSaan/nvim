@@ -12,7 +12,7 @@ return {
 		config = function ()
 			require("mason-lspconfig").setup {
 				automatic_installation = true,
-				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "stimulus_ls", "tailwindcss" },
+				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "stimulus_ls", "tailwindcss", "asm_lsp", "pylsp", "arduino_language_server" },
 			}
 		end,
 	},
@@ -63,6 +63,12 @@ return {
 				capabilities = capabilities
 			})
 			lspconfig.arduino_language_server.setup({
+				capabilities = capabilities
+			})
+			lspconfig.asm_lsp.setup({
+				capabilities = capabilities
+			})
+			lspconfig.pylsp.setup({
 				capabilities = capabilities
 			})
 
