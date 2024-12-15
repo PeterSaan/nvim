@@ -26,8 +26,9 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
-map("n", "<C-s>", vim.cmd.w)
-map("n", "<C-w>", vim.cmd.wq)
+map("n", "<leader>s", vim.cmd.w)
+map("n", "<leader>w", vim.cmd.wq)
+map("n", "<leader>e", vim.cmd.q)
 map("i", "<C-h>", "<Left>", {})
 map("i", "<C-l>", "<Right>", {})
 map("i", "<C-j>", "<Down>", {})
