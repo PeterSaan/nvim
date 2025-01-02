@@ -14,7 +14,7 @@ return {
 		config = function ()
 			require("mason-lspconfig").setup {
 				automatic_installation = true,
-				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "stimulus_ls", "tailwindcss", "asm_lsp", "pylsp", "arduino_language_server" },
+				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "tailwindcss", "arduino_language_server", "gopls" },
 			}
 		end,
 	},
@@ -71,6 +71,9 @@ return {
 				capabilities = capabilities
 			})
 			lspconfig.pylsp.setup({
+				capabilities = capabilities
+			})
+			lspconfig.gopls.setup({
 				capabilities = capabilities
 			})
 
