@@ -14,7 +14,7 @@ return {
 		config = function ()
 			require("mason-lspconfig").setup {
 				automatic_installation = true,
-				ensure_installed = { "lua_ls", "clangd", "ts_ls", "html", "emmet_ls", "bashls", "tailwindcss", "arduino_language_server", "gopls" },
+				ensure_installed = { "clangd", "ts_ls", "html", "emmet_ls", "tailwindcss", "arduino_language_server", "gopls", "volar" },
 			}
 		end,
 	},
@@ -22,11 +22,23 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
+			local mason_registry = require("mason-registry")
+			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue/language-server'
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
+				init_options = {
+					plugins = {
+						{
+							name = '@vue/typescript-plugin',
+							location = vue_ls_path,
+							languages = { "vue" }
+						}
+					}
+				},
+				filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -44,7 +56,7 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.clangd.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
 			})
 			lspconfig.volar.setup({
 				capabilities = capabilities
@@ -65,7 +77,14 @@ return {
 				capabilities = capabilities
 			})
 			lspconfig.arduino_language_server.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
+				cmd = {
+					"arduino-language-server",
+					"-clangd", "/usr/lib/llvm-15/bin/clangd",
+					"-cli", "/snap/bin/arduino-cli",
+					"-cli-config", "~/snap/arduino-cli/57/.arduino15/arduino-cli.yaml",
+					"-fqbn", "esp8266:esp8266:nodemcuv2", -- esp8266:esp8266:generic or esp32:esp32:esp32
+				},
 			})
 			lspconfig.asm_lsp.setup({
 				capabilities = capabilities
