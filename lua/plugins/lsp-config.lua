@@ -23,22 +23,12 @@ return {
 		lazy = false,
 		config = function()
 			local mason_registry = require("mason-registry")
-			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue/language-server'
+			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue'
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
-				init_options = {
-					plugins = {
-						{
-							name = '@vue/typescript-plugin',
-							location = vue_ls_path,
-							languages = { "vue" }
-						}
-					}
-				},
-				filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -59,7 +49,13 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.volar.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
+				filetypes = { "vue", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+				init_options = {
+					vue = {
+						hybridMode = false,
+					},
+				},
 			})
 			lspconfig.docker_compose_language_service.setup({
 				capabilities = capabilities
