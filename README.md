@@ -8,18 +8,29 @@ My config files for setting up Neovim on Linux
 
 - Neovim >= 0.8 (with LuaJIT)
 ```bash
-sudo snap install nvim --classic
+# for Ubuntu
+snap install nvim --classic
+
+# for Arch
+pacman -S nvim
 ```
 
 - Git >= 2.19
 ```bash
-sudo apt install git-all
+# for Ubuntu
+apt install git-all
+
+# for Arch
+pacman -S git
 ```
 
-- luarocks
+- luarocks and lua
 ```bash
-sudo apt install lua{latest version}
-sudo apt install luarocks
+# for Ubuntu
+apt install lua{latest version} luarocks
+
+# for Arch
+pacman -S lua luarocks
 ```
 
 - Make sure a nerdy font has been installed for icons
@@ -28,6 +39,7 @@ sudo apt install luarocks
 
 - Open `init.lua` file with `nvim` to install all the plugins via UI (if it doesn't open automatically, run `:Lazy`)
 - Run `:checkhealth lazy` in the command line to ensure everything is fine
+- Make sure Mason downloaded LSPs work as intended
 
 ## Match Windows Terminal with neovim theme
 
