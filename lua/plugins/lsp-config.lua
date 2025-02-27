@@ -14,7 +14,7 @@ return {
 		config = function ()
 			require("mason-lspconfig").setup {
 				automatic_installation = true,
-				ensure_installed = { "clangd", "ts_ls", "html", "emmet_ls", "tailwindcss", "arduino_language_server", "gopls", "volar" },
+				ensure_installed = { "clangd", "neocmake", "ts_ls", "html", "emmet_ls", "tailwindcss", "arduino_language_server", "gopls", "volar" },
 			}
 		end,
 	},
@@ -46,6 +46,9 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.clangd.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.neocmake.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.volar.setup({
@@ -89,6 +92,9 @@ return {
 				capabilities = capabilities
 			})
 			lspconfig.gopls.setup({
+				capabilities = capabilities
+			})
+			lspconfig.jdtls.setup({
 				capabilities = capabilities
 			})
 
