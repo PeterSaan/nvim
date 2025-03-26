@@ -22,36 +22,36 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
-			local mason_registry = require("mason-registry")
-			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue'
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			lspconfig.ts_ls.setup({
+			lspconfig.ts_ls.setup{ capabilities = capabilities, }
+			lspconfig.lua_ls.setup{
 				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.emmet_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.neocmake.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.volar.setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" }
+						}
+					}
+				}
+			}
+			lspconfig.html.setup{ capabilities = capabilities, }
+			lspconfig.emmet_ls.setup{ capabilities = capabilities, }
+			lspconfig.tailwindcss.setup{ capabilities = capabilities, }
+			lspconfig.intelephense.setup{ capabilities = capabilities, }
+			lspconfig.clangd.setup{ capabilities = capabilities, }
+			lspconfig.neocmake.setup{ capabilities = capabilities, }
+			lspconfig.docker_compose_language_service.setup{ capabilities = capabilities }
+			lspconfig.dockerls.setup{ capabilities = capabilities }
+			lspconfig.stimulus_ls.setup{ capabilities = capabilities }
+			lspconfig.bashls.setup{ capabilities = capabilities }
+			lspconfig.powershell_es.setup{ capabilities = capabilities }
+			lspconfig.asm_lsp.setup{ capabilities = capabilities }
+			lspconfig.pylsp.setup{ capabilities = capabilities }
+			lspconfig.gopls.setup{ capabilities = capabilities }
+			lspconfig.jdtls.setup{ capabilities = capabilities }
+			lspconfig.volar.setup{
 				capabilities = capabilities,
 				filetypes = { "vue", "typescript", "typescriptreact", "javascript", "javascriptreact" },
 				init_options = {
@@ -59,23 +59,8 @@ return {
 						hybridMode = false,
 					},
 				},
-			})
-			lspconfig.docker_compose_language_service.setup({
-				capabilities = capabilities
-			})
-			lspconfig.dockerls.setup({
-				capabilities = capabilities
-			})
-			lspconfig.stimulus_ls.setup({
-				capabilities = capabilities
-			})
-			lspconfig.bashls.setup({
-				capabilities = capabilities
-			})
-			lspconfig.powershell_es.setup({
-				capabilities = capabilities
-			})
-			lspconfig.arduino_language_server.setup({
+			}
+			lspconfig.arduino_language_server.setup{
 				capabilities = capabilities,
 				cmd = {
 					"arduino-language-server",
@@ -84,24 +69,8 @@ return {
 					"-cli-config", "~/snap/arduino-cli/57/.arduino15/arduino-cli.yaml",
 					"-fqbn", "esp8266:esp8266:nodemcuv2", -- esp8266:esp8266:generic or esp32:esp32:esp32
 				},
-			})
-			lspconfig.asm_lsp.setup({
-				capabilities = capabilities
-			})
-			lspconfig.pylsp.setup({
-				capabilities = capabilities
-			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities
-			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities
-			})
+			}
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
 }
