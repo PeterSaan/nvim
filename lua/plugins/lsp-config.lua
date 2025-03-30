@@ -14,7 +14,7 @@ return {
 		config = function ()
 			require("mason-lspconfig").setup {
 				automatic_installation = true,
-				ensure_installed = { "clangd", "neocmake", "ts_ls", "html", "emmet_ls", "tailwindcss", "arduino_language_server", "gopls", "volar" },
+				ensure_installed = { "clangd", "ts_ls", "html", "emmet_ls", "tailwindcss", "arduino_language_server", "gopls", "volar" },
 			}
 		end,
 	},
@@ -24,16 +24,46 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
+			local mason_registry = require("mason-registry")
+			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue'
 
-			lspconfig.ts_ls.setup{ capabilities = capabilities, }
-			lspconfig.lua_ls.setup{
+			lspconfig.ts_ls.setup{
 				capabilities = capabilities,
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" }
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vue_ls_path .. "/typescript-plugin",
+							languages = { "javascript", "typescript", "vue" }
 						}
 					}
+				},
+				filetypes = { "javascript", "typescript", "vue" }
+			}
+			lspconfig.lua_ls.setup{
+				capabilities = capabilities,
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc')) then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+						runtime = {
+							version = 'LuaJIT'
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME
+							}
+						}
+					})
+				end,
+				settings = {
+					Lua = {}
 				}
 			}
 			lspconfig.html.setup{ capabilities = capabilities, }
@@ -44,22 +74,10 @@ return {
 			lspconfig.neocmake.setup{ capabilities = capabilities, }
 			lspconfig.docker_compose_language_service.setup{ capabilities = capabilities }
 			lspconfig.dockerls.setup{ capabilities = capabilities }
-			lspconfig.stimulus_ls.setup{ capabilities = capabilities }
 			lspconfig.bashls.setup{ capabilities = capabilities }
-			lspconfig.powershell_es.setup{ capabilities = capabilities }
 			lspconfig.asm_lsp.setup{ capabilities = capabilities }
 			lspconfig.pylsp.setup{ capabilities = capabilities }
 			lspconfig.gopls.setup{ capabilities = capabilities }
-			lspconfig.jdtls.setup{ capabilities = capabilities }
-			lspconfig.volar.setup{
-				capabilities = capabilities,
-				filetypes = { "vue", "typescript", "typescriptreact", "javascript", "javascriptreact" },
-				init_options = {
-					vue = {
-						hybridMode = false,
-					},
-				},
-			}
 			lspconfig.arduino_language_server.setup{
 				capabilities = capabilities,
 				cmd = {
