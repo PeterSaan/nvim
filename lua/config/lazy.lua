@@ -33,7 +33,7 @@ map("i", "<C-l>", "<Right>", {})
 map("i", "<C-j>", "<Down>", {})
 map("i", "<C-k>", "<Up>", {})
 
--- lsp-config keymaps
+-- cmp keymaps
 map("n", "K", vim.lsp.buf.hover, {})
 map("n", "<leader>gd", vim.lsp.buf.definition, {})
 map("n", "<leader>gr", vim.lsp.buf.references, {})
@@ -43,9 +43,21 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, {})
 map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
 
 vim.diagnostic.config({ virtual_text = true })
+
 vim.lsp.enable({
+	"arduinols",
+	"asmls",
+	"bashls",
+	"clangd",
+	"docker_compose_ls",
+	"dockerls",
+	"emmetls",
+	"gopls",
+	"html",
 	"luals",
-	"tsls"
+	"neocmake",
+	"tailwindcss",
+	"tsls",
 })
 
 require("lazy").setup({

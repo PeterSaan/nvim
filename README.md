@@ -33,6 +33,8 @@ apt install lua{latest version} luarocks
 pacman -S lua luarocks
 ```
 
+- Add `$HOME/.local/share/nvim/mason/bin` directory to PATH
+
 - Make sure a nerdy font has been installed for icons
 
 ## After installation and cloning

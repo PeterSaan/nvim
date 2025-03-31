@@ -17,7 +17,7 @@ return {
 			local cmp = require("cmp")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
-			cmp.setup({
+			cmp.setup{
 				mapping = cmp.mapping.preset.insert({
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
@@ -36,7 +36,7 @@ return {
 				}, {
 						{ name = "buffer" },
 					}),
-			})
+			}
 		end,
 	},
 }
