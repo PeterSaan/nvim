@@ -42,15 +42,15 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, {})
 -- neotree keymaps
 map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
 
--- telescope keymaps
+vim.diagnostic.config({ virtual_text = true })
+vim.lsp.enable({
+	"luals",
+	"tsls"
+})
 
--- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- Import your plugins
 		{ import = "plugins" },
 	},
-	-- Configure any other settings here. See the docs for more details.
-	-- Automatically check for plugin updates
 	checker = { enabled = true },
 })

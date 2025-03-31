@@ -24,48 +24,7 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			local mason_registry = require("mason-registry")
-			local vue_ls_path = mason_registry.get_package("vue-language-server"):get_install_path() .. '/node_modules/@vue'
 
-			lspconfig.ts_ls.setup{
-				capabilities = capabilities,
-				init_options = {
-					plugins = {
-						{
-							name = "@vue/typescript-plugin",
-							location = vue_ls_path .. "/typescript-plugin",
-							languages = { "javascript", "typescript", "vue" }
-						}
-					}
-				},
-				filetypes = { "javascript", "typescript", "vue" }
-			}
-			lspconfig.lua_ls.setup{
-				capabilities = capabilities,
-				on_init = function(client)
-					if client.workspace_folders then
-						local path = client.workspace_folders[1].name
-						if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc')) then
-							return
-						end
-					end
-
-					client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-						runtime = {
-							version = 'LuaJIT'
-						},
-						workspace = {
-							checkThirdParty = false,
-							library = {
-								vim.env.VIMRUNTIME
-							}
-						}
-					})
-				end,
-				settings = {
-					Lua = {}
-				}
-			}
 			lspconfig.html.setup{ capabilities = capabilities, }
 			lspconfig.emmet_ls.setup{ capabilities = capabilities, }
 			lspconfig.tailwindcss.setup{ capabilities = capabilities, }
@@ -78,16 +37,6 @@ return {
 			lspconfig.asm_lsp.setup{ capabilities = capabilities }
 			lspconfig.pylsp.setup{ capabilities = capabilities }
 			lspconfig.gopls.setup{ capabilities = capabilities }
-			lspconfig.arduino_language_server.setup{
-				capabilities = capabilities,
-				cmd = {
-					"arduino-language-server",
-					"-clangd", "/usr/lib/llvm-15/bin/clangd",
-					"-cli", "/snap/bin/arduino-cli",
-					"-cli-config", "~/snap/arduino-cli/57/.arduino15/arduino-cli.yaml",
-					"-fqbn", "esp8266:esp8266:nodemcuv2", -- esp8266:esp8266:generic or esp32:esp32:esp32
-				},
-			}
 
 		end,
 	},
