@@ -58,6 +58,7 @@ vim.lsp.enable({
 	"neocmake",
 	"tailwindcss",
 	"tsls",
+	"volar",
 })
 
 require("lazy").setup({
