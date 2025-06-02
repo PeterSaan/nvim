@@ -32,6 +32,7 @@ map("i", "<C-h>", "<Left>", {})
 map("i", "<C-l>", "<Right>", {})
 map("i", "<C-j>", "<Down>", {})
 map("i", "<C-k>", "<Up>", {})
+map("n", "<leader>ow", vim.diagnostic.open_float)
 
 -- cmp keymaps
 map("n", "K", vim.lsp.buf.hover, {})
