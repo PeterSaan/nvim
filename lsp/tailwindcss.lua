@@ -25,5 +25,5 @@ return {
 			validate = true
 		}
 	},
-	root_markers = { "index.css" }
+	root_markers = { "tailwind.config.js", "tailwind.config.ts", "index.css", "resources/" }
 }

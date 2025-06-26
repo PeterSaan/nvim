@@ -55,11 +55,11 @@ vim.lsp.enable({
 	"emmetls",
 	"gopls",
 	"html",
+	"intelephense",
 	"luals",
 	"neocmake",
 	"tailwindcss",
 	"tsls",
-	"volar",
 })
 
 require("lazy").setup({
