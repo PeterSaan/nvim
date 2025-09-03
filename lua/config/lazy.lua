@@ -50,6 +50,7 @@ vim.lsp.enable({
 	"asmls",
 	"bashls",
 	"clangd",
+	"cssls",
 	"docker_compose_ls",
 	"dockerls",
 	"emmetls",
@@ -58,6 +59,7 @@ vim.lsp.enable({
 	"intelephense",
 	"luals",
 	"neocmake",
+	"py",
 	"tailwindcss",
 	"tsls",
 })
