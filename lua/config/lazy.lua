@@ -62,6 +62,7 @@ vim.lsp.enable({
 	"py",
 	"tailwindcss",
 	"tsls",
+	"vuels"
 })
 
 require("lazy").setup({

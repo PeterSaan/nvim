@@ -1,13 +1,18 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 ---@type vim.lsp.Config
 return {
-	capabilities = capabilities,
+	capabilities = {
+		textDocument = {
+			semanticTokens = vim.NIL
+		},
+		workspace = {
+			semanticTokens = vim.NIL
+		}
+	},
 	cmd = {
 		"arduino-language-server",
-		"-clangd", "~/.local/share/nvim/mason/bin/clangd",
+		"-clangd", "/home/pets/.local/share/nvim/mason/bin/clangd",
 		"-cli", "/usr/bin/arduino-cli",
-		"-cli-config", "~/.arduino15/arduino-cli.yaml",
+		"-cli-config", "/home/pets/.arduino15/arduino-cli.yaml",
 		"-fqbn", "esp32:esp32:esp32",
 	},
 	filetypes = { "arduino" },

@@ -1,4 +1,5 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local vuels_path = vim.fn.expand("~/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server")
 
 ---@type vim.lsp.Config
 return {
@@ -8,11 +9,11 @@ return {
 		plugins = {
 			{
 				name = "@vue/typescript-plugin",
-				location = vim.fn.expand("~/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server"),
-				languages = { "javascript", "typescript", "vue" }
+				location = vuels_path,
+				languages = { "vue" }
 			}
 		}
 	},
 	filetypes = { "javascript", "typescript", "vue", "javascriptreact", "typescriptreact", "javascript.tsx", "typescript.tsx" },
-	root_markers = { "package.json" },
+	root_markers = { "package.json", "package-lock.json", "bun.lock" },
 }
