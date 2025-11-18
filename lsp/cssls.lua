@@ -6,7 +6,7 @@ return {
 	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },
 	init_options = { provideFormatter = true },
-	root_markers = { "package.json", ".git" },
+	root_markers = { "package.json", ".git", "main.css", "index.css", "style.css" },
 	settings = {
 		css = {
 			validate = true

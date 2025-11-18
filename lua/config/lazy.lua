@@ -41,7 +41,7 @@ map("n", "<leader>gr", vim.lsp.buf.references, {})
 map("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- neotree keymaps
-map("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
+map("n", "<C-n>", ":Neotree filesystem toggle float<CR>", {})
 
 vim.diagnostic.config({ virtual_text = true })
 
