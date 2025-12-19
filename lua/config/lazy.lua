@@ -12,40 +12,14 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
+
 vim.opt.rtp:prepend(lazypath)
-
-local map = vim.keymap.set
-
-vim.g.mapleader = " "
-
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
--- vanilla vim keymaps
-map("n", "<leader>s", vim.cmd.w)
-map("n", "<leader>w", vim.cmd.wq)
-map("n", "<leader>e", vim.cmd.q)
-map("i", "<C-h>", "<Left>", {})
-map("i", "<C-l>", "<Right>", {})
-map("i", "<C-j>", "<Down>", {})
-map("i", "<C-k>", "<Up>", {})
-map("n", "<leader>ow", vim.diagnostic.open_float)
-
--- cmp keymaps
-map("n", "K", vim.lsp.buf.hover, {})
-map("n", "<leader>gd", vim.lsp.buf.definition, {})
-map("n", "<leader>gr", vim.lsp.buf.references, {})
-map("n", "<leader>ca", vim.lsp.buf.code_action, {})
-
--- neotree keymaps
-map("n", "<C-n>", ":Neotree filesystem toggle float<CR>", {})
-
-vim.diagnostic.config({ virtual_text = true })
-
-vim.lsp.enable({
+local langServers = {
 	"arduinols",
 	"asmls",
 	"bashls",
@@ -60,10 +34,37 @@ vim.lsp.enable({
 	"luals",
 	"neocmake",
 	"py",
+	"sveltels",
 	"tailwindcss",
 	"tsls",
 	"vuels"
-})
+}
+
+local function lspRestart()
+	vim.lsp.enable(langServers, false)
+	vim.lsp.enable(langServers, true)
+end
+
+local map = vim.keymap.set
+vim.g.mapleader = " "
+
+map("n", "<leader>s", vim.cmd.w)
+map("n", "<leader>w", vim.cmd.wq)
+map("n", "<leader>e", vim.cmd.q)
+map("i", "<C-h>", "<Left>", {})
+map("i", "<C-l>", "<Right>", {})
+map("i", "<C-j>", "<Down>", {})
+map("i", "<C-k>", "<Up>", {})
+map("n", "<leader>ow", vim.diagnostic.open_float)
+map("n", "<leader>l", lspRestart)
+map("n", "K", vim.lsp.buf.hover, {})
+map("n", "<leader>gd", vim.lsp.buf.definition, {})
+map("n", "<leader>gr", vim.lsp.buf.references, {})
+map("n", "<leader>ca", vim.lsp.buf.code_action, {})
+map("n", "<C-n>", ":Neotree filesystem toggle float<CR>", {})
+
+vim.lsp.enable(langServers)
+vim.diagnostic.config({ virtual_text = true })
 
 require("lazy").setup({
 	spec = {
