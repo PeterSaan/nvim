@@ -37,7 +37,7 @@ local langServers = {
 	"sveltels",
 	"tailwindcss",
 	"tsls",
-	"vuels"
+	"vuels",
 }
 
 local function lspRestart()
@@ -51,17 +51,18 @@ vim.g.mapleader = " "
 map("n", "<leader>s", vim.cmd.w)
 map("n", "<leader>w", vim.cmd.wq)
 map("n", "<leader>e", vim.cmd.q)
-map("i", "<C-h>", "<Left>", {})
-map("i", "<C-l>", "<Right>", {})
-map("i", "<C-j>", "<Down>", {})
-map("i", "<C-k>", "<Up>", {})
+map("i", "<C-h>", "<Left>")
+map("i", "<C-l>", "<Right>")
+map("i", "<C-j>", "<Down>")
+map("i", "<C-k>", "<Up>")
 map("n", "<leader>ow", vim.diagnostic.open_float)
-map("n", "<leader>l", lspRestart)
-map("n", "K", vim.lsp.buf.hover, {})
-map("n", "<leader>gd", vim.lsp.buf.definition, {})
-map("n", "<leader>gr", vim.lsp.buf.references, {})
-map("n", "<leader>ca", vim.lsp.buf.code_action, {})
-map("n", "<C-n>", ":Neotree filesystem toggle float<CR>", {})
+map("n", "<leader>res", lspRestart)
+map("n", "K", vim.lsp.buf.hover)
+map("n", "<leader>gd", vim.lsp.buf.definition)
+map("n", "<leader>gr", vim.lsp.buf.references)
+map("n", "<leader>ca", vim.lsp.buf.code_action)
+map("n", "<leader>f", vim.lsp.buf.format)
+map("n", "<C-n>", ":Neotree filesystem toggle float<CR>")
 
 vim.lsp.enable(langServers)
 vim.diagnostic.config({ virtual_text = true })
