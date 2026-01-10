@@ -1,6 +1,7 @@
 local langs = {
 	"arduino",
 	"bash",
+	"blade",
 	"c",
 	"c_sharp",
 	"cmake",
