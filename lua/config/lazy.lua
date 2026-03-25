@@ -26,6 +26,12 @@ vim.filetype.add({
 	},
 })
 
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	callback = function()
+		vim.cmd("checktime")
+	end,
+})
+
 local langServers = {
 	"arduinols",
 	"asmls",
