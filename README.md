@@ -4,16 +4,15 @@ My config files for setting up Neovim on Linux
 
 ## Requirements
 
-- Clone this config into `$XDG_CONFIG_HOME` (or `~/.config` by default)
+- Clone this config into `$XDG_CONFIG_HOME`
 - Install Neovim, Git, Lua and LuaRocks
 - Add `~/.local/share/nvim/mason/bin` directory to PATH
 - Make sure a nerdy font has been installed for icons
 
 ## After installation and cloning
 
-- Open any file with `nvim` to install all the plugins via UI
-- Run `:checkhealth lazy` in the command line to ensure everything is fine
-- Make sure Mason-downloaded LSPs, linters and formatters work as intended (`:checkhealth vim.lsp` may help)
+- Run `nvim` to confirm plugin installations
+- `:checkhealth` is your friend for debugging
 
 ## Match Windows Terminal with neovim theme
 
