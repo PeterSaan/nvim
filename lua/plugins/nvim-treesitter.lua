@@ -1,3 +1,7 @@
+vim.pack.add({
+	"https://github.com/nvim-treesitter/nvim-treesitter"
+})
+
 local langs = {
 	"arduino",
 	"bash",
@@ -52,9 +56,8 @@ local langs = {
 	"yaml",
 }
 
-return {
-	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
+local treesitter = require("nvim-treesitter")
+treesitter.setup({
 	build = ":TSUpdate",
 	init = function()
 		vim.api.nvim_create_autocmd("FileType", {
@@ -64,7 +67,5 @@ return {
 			end,
 		})
 	end,
-	config = function()
-		require("nvim-treesitter").install(langs)
-	end,
-}
+})
+treesitter.install(langs)

@@ -1,23 +1,19 @@
-return {
-	"nvimtools/none-ls.nvim",
-	config = function()
-		local null_ls = require("null-ls")
+vim.pack.add({
+	"https://github.com/nvimtools/none-ls.nvim"
+})
 
-		local sources = {
-			null_ls.builtins.formatting.prettierd.with({
+local none = require("null-ls")
+none.setup({
+		sources = {
+			none.builtins.formatting.prettierd.with({
 				env = {
 					string.format(
 						"PRETTIERD_DEFAULT_CONFIG=%s",
-						vim.fn.expand("~/dotfiles/nvim/utils/formatter/.prettierrc")
+						vim.fn.expand("$XDG_CONFIG_HOME/nvim/utils/formatter/.prettierrc")
 					),
 					"PRETTIERD_LOCAL_PRETTIER_ONLY=true"
 				},
 			}),
-			null_ls.builtins.formatting.stylua,
-		}
-
-		null_ls.setup({
-			sources = sources,
-		})
-	end,
-}
+			none.builtins.formatting.stylua,
+		},
+})
