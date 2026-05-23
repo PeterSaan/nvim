@@ -3,10 +3,19 @@ vim.pack.add({
 })
 
 local lualine = require("lualine")
-
 lualine.setup({
 	options = {
+		component_separators = { left = "|", right = "|" },
+		disabled_filetypes = {
+			statusline = { "neo-tree" },
+			winbar = { "neo-tree" },
+		},
 		icons_enabled = true,
-		theme = "tokyonight-night"
-	}
+		section_separators = { left = "", right = "" },
+		theme = "tokyonight-night",
+	},
+	sections = {
+		lualine_x = { "filetype" },
+		lualine_y = { "%L lines " },
+	},
 })
