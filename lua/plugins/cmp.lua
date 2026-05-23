@@ -9,6 +9,7 @@ vim.pack.add({
 local cmp = require("cmp")
 local cmpNvimLsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
+local cmpAutopairs = require("nvim-autopairs.completion.cmp")
 
 cmpNvimLsp.setup()
 luasnip.setup()
@@ -30,4 +31,9 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "luasnip" },
 	}),
+})
+
+cmp.event:on({
+	"confirm_done",
+	cmpAutopairs.on_confirm_done(),
 })
