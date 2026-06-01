@@ -1,5 +1,5 @@
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter"
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 })
 
 local langs = {
@@ -57,15 +57,11 @@ local langs = {
 }
 
 local treesitter = require("nvim-treesitter")
-treesitter.setup({
-	build = ":TSUpdate",
-	init = function()
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = langs,
-			callback = function()
-				vim.treesitter.start()
-			end,
-		})
+treesitter.install(langs)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = langs,
+	callback = function()
+		vim.treesitter.start()
 	end,
 })
-treesitter.install(langs)
