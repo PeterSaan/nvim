@@ -7,8 +7,8 @@ lualine.setup({
 	options = {
 		component_separators = { left = "|", right = "|" },
 		disabled_filetypes = {
-			statusline = { "neo-tree" },
-			winbar = { "neo-tree" },
+			statusline = { "neo-tree", "TelescopePrompt" },
+			winbar = { "neo-tree", "TelescopePrompt" },
 		},
 		icons_enabled = true,
 		section_separators = { left = "", right = "" },
