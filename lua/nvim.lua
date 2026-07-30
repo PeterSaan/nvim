@@ -17,6 +17,10 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
 	end,
 })
 
+vim.api.nvim_create_user_command('PackUpdate', function()
+	vim.pack.update()
+end, {})
+
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
